@@ -31,119 +31,28 @@
       </p>
     </div>
     <div class="row pt-45">
+      {% for post in posts %}
       <div class="col-lg-4 col-md-6">
         <div class="blog-card">
           <div class="blog-img">
-            <a href="blog-details.html">
-              <img src="{% static "img/blog/1.jpg" %}" alt="Blog Images" />
+            <a href="{% url "blog_details" post.pk %}">
+              {% if post.image %}
+              <img src="{{post.image.url}}" alt="Blog Images" />
+              {% endif %}
             </a>
           </div>
           <div class="blog-content">
             <div class="blog-tag">
-              <a href="#"><span>SEO Optimization</span></a>
+              <a href="{% url "blog_details" post.pk %}"><span>{{post.type}}</span></a>
             </div>
-            <a href="blog-details.html">
-              <h3>Basic Guidline Layout for SEO Bigenner Level</h3>
+            <a href="{% url "blog_details" post.pk %}">
+              <h3>{{post.title}}</h3>
             </a>
-            <a href="blog-details.html" class="read-btn">Read More</a>
+            <a href="{% url "blog_details" post.pk %}" class="read-btn">Read More</a>
           </div>
         </div>
       </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="blog-card">
-          <div class="blog-img">
-            <a href="blog-details.html">
-              <img src="{% static "img/blog/2.jpg" %}" alt="Blog Images" />
-            </a>
-          </div>
-          <div class="blog-content">
-            <div class="blog-tag">
-              <a href="#"><span>Marketing</span></a>
-            </div>
-            <a href="blog-details.html">
-              <h3>How to Become Most Skilled Person in Social Marketing</h3>
-            </a>
-            <a href="blog-details.html" class="read-btn">Read More</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="blog-card">
-          <div class="blog-img">
-            <a href="blog-details.html">
-              <img src="{% static "img/blog/3.jpg" %}" alt="Blog Images" />
-            </a>
-          </div>
-          <div class="blog-content">
-            <div class="blog-tag">
-              <a href="#"><span>Data Research</span></a>
-            </div>
-            <a href="blog-details.html">
-              <h3>Basic Guidline Layout for Data Research</h3>
-            </a>
-            <a href="blog-details.html" class="read-btn">Read More</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="blog-card">
-          <div class="blog-img">
-            <a href="blog-details.html">
-              <img src="{% static "img/blog/5.jpg" %}" alt="Blog Images" />
-            </a>
-          </div>
-          <div class="blog-content">
-            <div class="blog-tag">
-              <a href="#"><span>Development</span></a>
-            </div>
-            <a href="blog-details.html">
-              <h3>Basic Guidline Layout for Web Development</h3>
-            </a>
-            <a href="blog-details.html" class="read-btn">Read More</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="blog-card">
-          <div class="blog-img">
-            <a href="blog-details.html">
-              <img src="{% static "img/blog/4.jpg" %}" alt="Blog Images" />
-            </a>
-          </div>
-          <div class="blog-content">
-            <div class="blog-tag">
-              <a href="#"><span>Data Analysis</span></a>
-            </div>
-            <a href="blog-details.html">
-              <h3>How to Become Most Skilled Person in Data Analysis</h3>
-            </a>
-            <a href="blog-details.html" class="read-btn">Read More</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="blog-card">
-          <div class="blog-img">
-            <a href="blog-details.html">
-              <img src="{% static "img/blog/6.jpg" %}" alt="Blog Images" />
-            </a>
-          </div>
-          <div class="blog-content">
-            <div class="blog-tag">
-              <a href="#"><span>Development</span></a>
-            </div>
-            <a href="blog-details.html">
-              <h3>Basic Guidline Layout for App Development</h3>
-            </a>
-            <a href="blog-details.html" class="read-btn">Read More</a>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
 
       <div class="col-lg-12">
         <div class="pagination-area">

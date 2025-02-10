@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Blog
 
 # Create your views here.
 
@@ -14,13 +15,25 @@ def about(req):
     template_name = 'pages/about.html'
     return render(req, template_name)
 
-def blog_details(req):
-    template_name = 'pages/blog--details.html'
-    return render(req, template_name)
 
 def blog(req):
     template_name = 'pages/blog.html'
-    return render(req, template_name)
+    posts = Blog.objects.all()
+    context = {
+        'posts': posts
+    }
+    return render(req, template_name, context)
+
+
+def blog_details(req, pk):
+    template_name = 'pages/blog-details.html'
+    post = Blog.objects.get(pk=pk)
+    # last_posts = Blog.objects.order_by('-created_at')
+    context = {
+        'post': post,
+        # 'last_posts': last_posts
+    }
+    return render(req, template_name, context)
 
 def contact(req):
     template_name = 'pages/contact.html'
