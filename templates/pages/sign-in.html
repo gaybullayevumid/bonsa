@@ -1,0 +1,109 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<!-- Inner Banner -->
+<div class="inner-banner inner-bg4">
+  <div class="container">
+    <div class="inner-title text-center">
+      <h3>Sign In</h3>
+      <ul>
+        <li>
+          <a href="index.html">Home</a>
+        </li>
+        <li>
+          <i class="bx bxs-chevrons-right"></i>
+        </li>
+        <li>Sign In</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- Inner Banner End -->
+
+<!-- Start Sign In Area -->
+<section class="sign-in-area ptb-100">
+  <div class="container">
+    <div class="section-title text-center">
+      <span>Sign In</span>
+      <h2>Sign In to your account!</h2>
+      <p>
+        It is a long established fact that a reader will be distracted by the
+        readable content of a page when looking at its layout.
+      </p>
+    </div>
+    <div class="contact-wrap-form log-in-width">
+      <form method="post">
+        <p>with your social network</p>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-4">
+            <button class="login-social-btn" type="submit">
+              <i class="bx bxl-google-plus"></i>
+            </button>
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-4">
+            <button class="login-social-btn" type="submit">
+              <i class="bx bxl-facebook"></i>
+            </button>
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-4">
+            <button class="login-social-btn" type="submit">
+              <i class="bx bxl-twitter"></i>
+            </button>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <input
+                class="form-control"
+                type="text"
+                name="name"
+                placeholder="Username or Email"
+              />
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <input
+                class="form-control"
+                type="password"
+                name="password"
+                placeholder="Password"
+              />
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-sm-6 form-condition">
+            <div class="agree-label">
+              <input type="checkbox" id="chb1" />
+              <label for="chb1"> Remember Me </label>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-sm-6">
+            <a class="forget" href="recover-password.html"
+              >Forgot my password?</a
+            >
+          </div>
+
+          <div class="col-12 text-center">
+            <button class="default-btn btn-two" type="submit">
+              Sign In Now
+            </button>
+          </div>
+
+          <div class="col-12">
+            <p class="account-desc">
+              Not a member?
+              <a href="sign-up.html">Sign Up</a>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<!-- End Sign In Area -->
+
+{% endblock content %}
