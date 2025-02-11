@@ -28,10 +28,10 @@ def blog(req):
 def blog_details(req, pk):
     template_name = 'pages/blog-details.html'
     post = Blog.objects.get(pk=pk)
-    # last_posts = Blog.objects.order_by('-created_at')
+    last_posts = Blog.objects.order_by('-created_at')
     context = {
         'post': post,
-        # 'last_posts': last_posts
+        'last_posts': last_posts
     }
     return render(req, template_name, context)
 
