@@ -43,7 +43,7 @@
           </div>
           <div class="blog-content">
             <div class="blog-tag">
-              <a href="{% url "blog_details" post.pk %}"><span>{{post.type}}</span></a>
+              <a href="{% url "blog_details" post.pk %}"><span>{{post.category}}</span></a>
             </div>
             <a href="{% url "blog_details" post.pk %}">
               <h3>{{post.title | truncatechars:55}}</h3>
