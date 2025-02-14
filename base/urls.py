@@ -2,22 +2,28 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('', Home.as_view(), name='home'),
-    path('about/', About.as_view(), name='about'),
-    path('members/', Members.as_view(), name='members'),
-    path('404/', error404, name='404'),
-    path('blog-details/<int:pk>/', blog_details, name='blog_details'),
-    path('blog/', blog, name='blog'),
-    path('contact/', contact, name='contact'),
-    path('faq/', faq, name='faq'),
-    path('portfolio/', portfolio, name='portfolio'),
-    path('pricing/', pricing, name='pricing'),
-    path('privacy_policy/', privacy_policy, name='privacy_policy'),
-    path('recover_password/', recover_password, name='recover_password'),
-    path('service_details/', service_details, name='service_details'),
-    path('services/', services, name='services'),
-    path('sign_in/', sign_in, name='sign-in'),
-    path('sign_up/', sign_up, name='sign-up'),
-    path('terms_condition/', terms_condition, name='terms_condition'),
-    path('testimonial/', testimonial, name='testimonial')
+    path('', HomePageView.as_view(), name='home'),
+    path('about/', AboutPageView.as_view(), name='about'),
+    path('members/', MembersPageView.as_view(), name='members'),
+    path('portfolio/', PortfolioPageView.as_view(), name='portfolio'),
+    path('pricing/', PricingPageView.as_view(), name='pricing'),
+    path('404/', Error404PageView.as_view(), name='404'),
+    path('faq/', FaqPageView.as_view(), name='faq'),
+    path('sign_in/', SignInPageView.as_view(), name='sign-in'),
+    path('sign_up/', SignUpPageView.as_view(), name='sign-up'),
+    path('recover_password/', RecoverPasswordPageView.as_view(), name='recover_password'),
+    path('terms_condition/', TermsConditionPageView.as_view(), name='terms_condition'),
+    path('privacy_policy/', PrivacyPolicyPageView.as_view(), name='privacy_policy'),
+    path('services/', ServicesPageView.as_view(), name='services'),
+    path('service_details/', ServiceDetailsPageView.as_view(), name='service_details'),
+    path('testimonial/', TestimonialPageView.as_view(), name='testimonial'),
+    path('blog/', BlogPageView.as_view(), name='blog'),
+    path('blog-details/<int:pk>/', BlogDetailPageView.as_view(), name='blog_details'),
+    path('contact/', ContactPageView.as_view(), name='contact'),
+
+
+
+
+
+
 ]

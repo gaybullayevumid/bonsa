@@ -1,89 +1,87 @@
 from django.shortcuts import render
 from .models import Blog
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, DetailView
 
 # Create your views here.
 
-class Home(TemplateView):
+class HomePageView(TemplateView):
     template_name = 'pages/home.html'
 
-class About(TemplateView):
+class AboutPageView(TemplateView):
     template_name = 'pages/about.html'
 
-class Members(TemplateView):
+class MembersPageView(TemplateView):
     template_name = 'pages/members.html'
 
-
-def error404(req):
-    template_name = 'pages/error404.html'
-    return render(req, template_name)
-
-
-
-def blog(req):
-    template_name = 'pages/blog.html'
-    posts = Blog.objects.all()
-    context = {
-        'posts': posts
-    }
-    return render(req, template_name, context)
-
-
-def blog_details(req, pk):
-    template_name = 'pages/blog-details.html'
-    post = Blog.objects.get(pk=pk)
-    last_posts = Blog.objects.order_by('-created_at')
-    context = {
-        'post': post,
-        'last_posts': last_posts
-    }
-    return render(req, template_name, context)
-
-def contact(req):
-    template_name = 'pages/contact.html'
-    return render(req, template_name)
-
-def faq(req):
-    template_name = 'pages/faq.html'
-    return render(req, template_name)
-
-
-def portfolio(req):
+class PortfolioPageView(TemplateView):
     template_name = 'pages/portfolio.html'
-    return render(req, template_name)
 
-def pricing(req):
+class PricingPageView(TemplateView):
     template_name = 'pages/pricing.html'
-    return render(req, template_name)
 
-def privacy_policy(req):
-    template_name = 'pages/privacy-policy.html'
-    return render(req, template_name)
+class Error404PageView(TemplateView):
+    template_name ='pages/error404.html'
 
-def recover_password(req):
-    template_name = 'pages/recover-password.html'
-    return render(req, template_name)
+class FaqPageView(TemplateView):
+    template_name = 'pages/faq.html'
 
-def service_details(req):
-    template_name = 'pages/service-details.html'
-    return render(req, template_name)
-
-def services(req):
-    template_name = 'pages/services.html'
-    return render(req, template_name)
-
-def sign_in(req):
+class SignInPageView(TemplateView):
     template_name = 'pages/sign-in.html'
-    return render(req, template_name)
 
-def sign_up(req):
+class SignUpPageView(TemplateView):
     template_name = 'pages/sign-up.html'
-    return render(req, template_name)
 
-def terms_condition(req):
+class RecoverPasswordPageView(TemplateView):
+    template_name = 'pages/recover-password.html'
+
+class TermsConditionPageView(TemplateView):
     template_name = 'pages/terms-condition.html'
-    return render(req, template_name)
 
-def testimonial(req):
+class PrivacyPolicyPageView(TemplateView):
+    template_name = 'pages/privacy-policy.html'
+
+class ServicesPageView(TemplateView):
+    template_name = 'pages/services.html'
+
+class ServiceDetailsPageView(TemplateView):
+    template_name = 'pages/service-details.html'
+
+class TestimonialPageView(TemplateView):
     template_name = 'pages/testimonial.html'
-    return render(req, template_name)
+
+class BlogPageView(ListView):
+    model = Blog
+    template_name = 'pages/blog.html'
+    context_object_name = 'posts'
+
+class BlogDetailPageView(DetailView):
+    model = Blog
+    template_name = 'pages/blog-details.html'
+    context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['last_posts'] = Blog.objects.order_by('-created_at')
+        return context
+
+class ContactPageView(TemplateView):
+    template_name = 'pages/contact.html'
+
+
+# def blog(req):
+#     template_name = 'pages/blog.html'
+#     posts = Blog.objects.all()
+#     context = {
+#         'posts': posts
+#     }
+#     return render(req, template_name, context)
+
+# def blog_details(req, pk):
+#     template_name = 'pages/blog-details.html'
+#     post = Blog.objects.get(pk=pk)
+#     last_posts = Blog.objects.order_by('-created_at')
+#     context = {
+#         'post': post,
+#         'last_posts': last_posts
+#     }
+#     return render(req, template_name, context)
