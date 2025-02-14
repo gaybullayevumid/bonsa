@@ -46,7 +46,7 @@
               <a href="{% url "blog_details" post.pk %}"><span>{{post.type}}</span></a>
             </div>
             <a href="{% url "blog_details" post.pk %}">
-              <h3>{{post.title}}</h3>
+              <h3>{{post.title | truncatechars:55}}</h3>
             </a>
             <a href="{% url "blog_details" post.pk %}" class="read-btn">Read More</a>
           </div>

@@ -1,19 +1,23 @@
 from django.shortcuts import render
 from .models import Blog
+from django.views.generic import TemplateView
 
 # Create your views here.
 
-def home(req):
+class Home(TemplateView):
     template_name = 'pages/home.html'
-    return render(req, template_name,)
+
+class About(TemplateView):
+    template_name = 'pages/about.html'
+
+class Members(TemplateView):
+    template_name = 'pages/members.html'
+
 
 def error404(req):
     template_name = 'pages/error404.html'
     return render(req, template_name)
 
-def about(req):
-    template_name = 'pages/about.html'
-    return render(req, template_name)
 
 
 def blog(req):
@@ -43,9 +47,6 @@ def faq(req):
     template_name = 'pages/faq.html'
     return render(req, template_name)
 
-def members(req):
-    template_name = 'pages/members.html'
-    return render(req, template_name)
 
 def portfolio(req):
     template_name = 'pages/portfolio.html'
