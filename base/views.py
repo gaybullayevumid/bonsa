@@ -68,22 +68,3 @@ class BlogDetailPageView(DetailView):
 
 class ContactPageView(TemplateView):
     template_name = 'pages/contact.html'
-
-
-# def blog(req):
-#     template_name = 'pages/blog.html'
-#     posts = Blog.objects.all()
-#     context = {
-#         'posts': posts
-#     }
-#     return render(req, template_name, context)
-
-# def blog_details(req, pk):
-#     template_name = 'pages/blog-details.html'
-#     post = Blog.objects.get(pk=pk)
-#     last_posts = Blog.objects.order_by('-created_at')
-#     context = {
-#         'post': post,
-#         'last_posts': last_posts
-#     }
-#     return render(req, template_name, context)
