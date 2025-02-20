@@ -4,4 +4,8 @@ from .models import Blog, Category
 # Register your models here.
 
 admin.site.register(Category)
-admin.site.register(Blog)
+
+@admin.register(Blog)
+class BlogAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'created_at')
+    prepopulated_fields = {'slug': ('title',)}

@@ -18,7 +18,7 @@ urlpatterns = [
     path('service_details/', ServiceDetailsPageView.as_view(), name='service_details'),
     path('testimonial/', TestimonialPageView.as_view(), name='testimonial'),
     path('blog/', BlogPageView.as_view(), name='blog'),
-    path('blog-details/<int:pk>/', BlogDetailPageView.as_view(), name='blog_details'),
+    path('blog-details/<slug:slug>/', BlogDetailPageView.as_view(), name='blog_details'),
     path('contact/', ContactPageView.as_view(), name='contact'),
 
 

@@ -43,12 +43,12 @@
           </div>
           <div class="blog-content">
             <div class="blog-tag">
-              <a href="{% url "blog_details" post.pk %}"><span>{{post.category}}</span></a>
+              <a href="{% url "blog_details" post.slug %}"><span>{{post.category}}</span></a>
             </div>
-            <a href="{% url "blog_details" post.pk %}">
+            <a href="{% url "blog_details" post.slug %}">
               <h3>{{post.title | truncatechars:55}}</h3>
             </a>
-            <a href="{% url "blog_details" post.pk %}" class="read-btn">Read More</a>
+            <a href="{% url "blog_details" post.slug %}" class="read-btn">Read More</a>
           </div>
         </div>
       </div>

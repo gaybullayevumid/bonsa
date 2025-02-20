@@ -59,6 +59,8 @@ class BlogDetailPageView(DetailView):
     model = Blog
     template_name = 'pages/blog-details.html'
     context_object_name = 'post'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
