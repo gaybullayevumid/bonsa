@@ -35,7 +35,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="blog-card">
           <div class="blog-img">
-            <a href="{% url "blog_details" post.pk %}">
+            <a href="{% url "blog_details" post.slug %}">
               {% if post.image %}
               <img src="{{post.image.url}}" alt="Blog Images" />
               {% endif %}
