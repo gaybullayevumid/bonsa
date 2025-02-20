@@ -6,16 +6,16 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="banner-text">
-          <span>Search Engine Optimization</span>
-          <h1>We Highlight Your Business to the World Market</h1>
+            {% for home in homes %}
+          <span>{{ home.title_1}}</span>
+          <h1>{{ home.title_2}}</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusod tempor incididunt ut labore et dolore magna aliqua. Quis ipsu
-            msuspendisse ultrices gravida.
+            {{ home.about }}
           </p>
+            {% endfor %}
 
           <div class="banner-btn">
-            <a href="contact.html" class="default-btn">Contact Us</a>
+            <a href="{% url 'contact' %}" class="default-btn">Contact Us</a>
             <a href="#" class="default-btn active">Know More</a>
           </div>
         </div>

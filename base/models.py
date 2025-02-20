@@ -24,3 +24,8 @@ class Blog(models.Model):
         if not self.slug:  # Agar slug bo'sh bo'lsa
             self.slug = slugify(self.title)  # slugify funksiyasidan foydalanish
         super().save(*args, **kwargs)
+
+class Home(models.Model):
+    title_1 = models.CharField(max_length=255)
+    title_2 = models.CharField(max_length=255)
+    about = models.TextField()
