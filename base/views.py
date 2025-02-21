@@ -56,6 +56,7 @@ class BlogPageView(ListView):
     template_name = 'pages/blog.html'
     context_object_name = 'posts'
     ordering = ['-created_at']
+    paginate_by = 6
 
 class BlogDetailPageView(DetailView):
     model = Blog
@@ -66,7 +67,10 @@ class BlogDetailPageView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        post = self.object
         context['last_posts'] = Blog.objects.order_by('-created_at')
+        context["prev_post"] = Blog.objects.filter(created_at__lt=post.created_at).order_by('-created_at').first()
+        context["next_post"] = Blog.objects.filter(created_at__gt=post.created_at).order_by('created_at').first()
         return context
 
 
