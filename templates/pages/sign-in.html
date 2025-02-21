@@ -7,7 +7,7 @@
       <h3>Sign In</h3>
       <ul>
         <li>
-          <a href="index.html">Home</a>
+          <a href="{% url 'home' %}">Home</a>
         </li>
         <li>
           <i class="bx bxs-chevrons-right"></i>
@@ -82,7 +82,7 @@
           </div>
 
           <div class="col-lg-6 col-sm-6">
-            <a class="forget" href="recover-password.html"
+            <a class="forget" href="{% url 'recover_password' %}"
               >Forgot my password?</a
             >
           </div>
@@ -96,7 +96,7 @@
           <div class="col-12">
             <p class="account-desc">
               Not a member?
-              <a href="sign-up.html">Sign Up</a>
+              <a href="{% url 'sign-up' %}">Sign Up</a>
             </p>
           </div>
         </div>
