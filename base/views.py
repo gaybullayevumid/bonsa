@@ -28,13 +28,13 @@ class FaqPageView(TemplateView):
     template_name = 'pages/faq.html'
 
 class SignInPageView(TemplateView):
-    template_name = 'pages/sign-in.html'
+    template_name = 'pages/../templates/account/sign-in.html'
 
 class SignUpPageView(TemplateView):
-    template_name = 'pages/sign-up.html'
+    template_name = 'pages/../templates/account/sign-up.html'
 
 class RecoverPasswordPageView(TemplateView):
-    template_name = 'pages/recover-password.html'
+    template_name = 'pages/../templates/account/recover-password.html'
 
 class TermsConditionPageView(TemplateView):
     template_name = 'pages/terms-condition.html'
