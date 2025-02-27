@@ -15,7 +15,7 @@ class Blog(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='blogs', null=True, blank=True)
     image = models.FileField(upload_to='media/images/') 
     created_at = models.DateTimeField(auto_now_add=True)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True, max_length=255)
 
     def __str__(self):
         return self.title
