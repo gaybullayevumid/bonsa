@@ -6,6 +6,9 @@ from django.utils.text import slugify
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     def __str__(self):
         return self.name
 
@@ -16,6 +19,9 @@ class Blog(models.Model):
     image = models.FileField(upload_to='media/images/')
     created_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True, blank=True, max_length=255)
+
+    class Meta:
+        verbose_name_plural = 'Blog'
 
     def __str__(self):
         return self.title
