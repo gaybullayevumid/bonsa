@@ -1,4 +1,4 @@
-from django.contrib.auth import user_logged_in
+from django.contrib.auth import user_logged_in, login
 from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 from django.contrib.auth.forms import UserCreationForm
@@ -20,7 +20,7 @@ class SignUpPageView(TemplateView):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
+            login(request, user)  # Foydalanuvchini tizimga kiritish
             return redirect('home')
         return render(request, self.template_name, {'form': form})
 
