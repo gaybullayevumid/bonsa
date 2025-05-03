@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
 
 <!-- Inner Banner -->
 <div class="inner-banner inner-bg6">
@@ -6,12 +8,8 @@
     <div class="inner-title text-center">
       <h3>Sign Up</h3>
       <ul>
-        <li>
-          <a href="{% url 'home' %}">Home</a>
-        </li>
-        <li>
-          <i class="bx bxs-chevrons-right"></i>
-        </li>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><i class="bx bxs-chevrons-right"></i></li>
         <li>Sign Up</li>
       </ul>
     </div>
@@ -32,56 +30,45 @@
     </div>
     <div class="contact-wrap-form log-in-width">
       <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
         <p>with your social network</p>
         <div class="row">
           <div class="col-lg-4 col-md-4 col-sm-4">
-            <button class="login-social-btn" type="submit">
+            <button class="login-social-btn" type="button">
               <i class="bx bxl-google-plus"></i>
             </button>
           </div>
-
           <div class="col-lg-4 col-md-4 col-sm-4">
-            <button class="login-social-btn" type="submit">
+            <button class="login-social-btn" type="button">
               <i class="bx bxl-facebook"></i>
             </button>
           </div>
-
           <div class="col-lg-4 col-md-4 col-sm-4">
-            <button class="login-social-btn" type="submit">
+            <button class="login-social-btn" type="button">
               <i class="bx bxl-twitter"></i>
             </button>
           </div>
 
           <div class="col-12">
             <div class="form-group">
-              <input
-                class="form-control"
-                type="text"
-                name="name"
-                placeholder="Username"
-              />
+              {{ form.username.errors }}
+              <input class="form-control" type="text" name="username" placeholder="Username" value="{{ form.username.value|default_if_none:'' }}" />
             </div>
           </div>
 
           <div class="col-12">
             <div class="form-group">
-              <input
-                class="form-control"
-                type="email"
-                name="name"
-                placeholder="Email"
-              />
+              {{ form.email.errors }}
+              <input class="form-control" type="email" name="email" placeholder="Email" value="{{ form.email.value|default_if_none:'' }}" />
             </div>
           </div>
 
           <div class="col-12">
             <div class="form-group">
-              <input
-                class="form-control"
-                type="password"
-                name="password"
-                placeholder="Password"
-              />
+              {{ form.password.errors }}
+              <input class="form-control" type="password" name="password" placeholder="Password" />
             </div>
           </div>
 
@@ -92,7 +79,7 @@
           <div class="col-12">
             <p class="account-desc">
               Already have an account?
-              <a href="{% url 'sign-in' %}">Sign In</a>
+              <a href="{% url 'login' %}">Sign In</a>
             </p>
           </div>
         </div>

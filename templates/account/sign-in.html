@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
 
 <!-- Inner Banner -->
 <div class="inner-banner inner-bg4">
@@ -6,12 +8,8 @@
     <div class="inner-title text-center">
       <h3>Sign In</h3>
       <ul>
-        <li>
-          <a href="{% url 'home' %}">Home</a>
-        </li>
-        <li>
-          <i class="bx bxs-chevrons-right"></i>
-        </li>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><i class="bx bxs-chevrons-right"></i></li>
         <li>Sign In</li>
       </ul>
     </div>
@@ -32,39 +30,45 @@
     </div>
     <div class="contact-wrap-form log-in-width">
       <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
         <p>with your social network</p>
         <div class="row">
           <div class="col-lg-4 col-md-4 col-sm-4">
-            <button class="login-social-btn" type="submit">
+            <button class="login-social-btn" type="button">
               <i class="bx bxl-google-plus"></i>
             </button>
           </div>
 
           <div class="col-lg-4 col-md-4 col-sm-4">
-            <button class="login-social-btn" type="submit">
+            <button class="login-social-btn" type="button">
               <i class="bx bxl-facebook"></i>
             </button>
           </div>
 
           <div class="col-lg-4 col-md-4 col-sm-4">
-            <button class="login-social-btn" type="submit">
+            <button class="login-social-btn" type="button">
               <i class="bx bxl-twitter"></i>
             </button>
           </div>
 
           <div class="col-12">
             <div class="form-group">
+              {{ form.username.errors }}
               <input
                 class="form-control"
                 type="text"
-                name="name"
+                name="username"
                 placeholder="Username or Email"
+                value="{{ form.username.value|default_if_none:'' }}"
               />
             </div>
           </div>
 
           <div class="col-12">
             <div class="form-group">
+              {{ form.password.errors }}
               <input
                 class="form-control"
                 type="password"
@@ -82,9 +86,9 @@
           </div>
 
           <div class="col-lg-6 col-sm-6">
-            <a class="forget" href="{% url 'recover_password' %}"
-              >Forgot my password?</a
-            >
+            <a class="forget" href="{% url 'password_reset' %}">
+              Forgot my password?
+            </a>
           </div>
 
           <div class="col-12 text-center">
@@ -96,7 +100,7 @@
           <div class="col-12">
             <p class="account-desc">
               Not a member?
-              <a href="{% url 'sign-up' %}">Sign Up</a>
+              <a href="{% url 'signup' %}">Sign Up</a>
             </p>
           </div>
         </div>

@@ -3,8 +3,8 @@ from django.db import models
 
 # Create your models here.
 
-# class CustomUser(AbstractUser):
-#     email = models.EmailField(unique=True)
-#
-#     def __str__(self):
-#         return self.username
+class CustomUser(AbstractUser):
+    email = models.EmailField(unique=True)
+
+    def __str__(self):
+        return self.username
