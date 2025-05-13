@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.aggregates import Count
 from django.utils.text import slugify
 
 # Create your models here.
@@ -11,6 +12,13 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def post_count(self):
+        return self.blogs.count()
+
+    @classmethod
+    def get_categories_with_count(cls):
+        return cls.objects.annotate(post_count=Count('blogs'))
 
 class Blog(models.Model):
     title = models.CharField(max_length=255)

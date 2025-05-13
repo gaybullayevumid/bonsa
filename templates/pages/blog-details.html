@@ -261,9 +261,11 @@
             <h3 class="widget-title">Categories</h3>
             <div class="post-wrap">
               <ul>
+                  {% for category in categories %}
                 <li>
-                  <a href="#">{{ post.category.name }} <span>(10)</span></a>
+                  <a href="#">{{ post.category.name }} <span>{{ category.post_count }}</span></a>
                 </li>
+                  {% endfor %}
               </ul>
             </div>
           </section>

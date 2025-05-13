@@ -3,7 +3,14 @@ from .models import *
 
 # Register your models here.
 
-admin.site.register(Category)
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'get_post_count')
+    search_fields = ('name',)
+
+    def get_post_count(self, obj):
+        return obj.blogs.count()
+    get_post_count.short_description = 'Postlar soni'
 
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
