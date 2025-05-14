@@ -84,10 +84,10 @@
           </div>
 
           <div class="comment-area">
-            <h3 class="comment-title">{{ comment.count }} Comments:</h3>
+            <h3 class="comment-title">{{ comments.count }} Comments:</h3>
 
               {% for comment in comments %}
-            <div class="comment-card {% if forloop.counter|divisibleby:2 %} ml-50 {% endif %}">
+            <div class="comment-card {% if forloop.counter|divisibleby:2 %}{% endif %}">
               <div class="comment-author-img">
                 <img src="{% static "img/testimonial/t1.png" %}" alt="Images" />
               </div>
