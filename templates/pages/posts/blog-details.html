@@ -159,7 +159,7 @@
             <div class="post-wrap">
                 {% for last_post in last_posts %}
               <article class="item">
-                <a href="{% url "blog_details" post.pk %}" class="thumb">
+                <a href="{% url "blog_details" post.slug %}" class="thumb">
                     {% if last_post.image %}
                         <img src="{{ last_post.image.url }}" alt="{{ post.title }}" class="fullimage cover bg1" role="img">
                     {% else %}

@@ -9,7 +9,7 @@ from django.views.generic import ListView, DetailView
 
 class BlogListView(ListView):
     model = Blog
-    template_name = 'pages/blog.html'
+    template_name = 'pages/posts/blog.html'
     context_object_name = 'posts'
     ordering = ['-created_at']
     paginate_by = 6
@@ -23,7 +23,7 @@ class BlogListView(ListView):
 
 class BlogDetailView(DetailView):
     model = Blog
-    template_name = 'pages/blog-details.html'
+    template_name = 'pages/posts/blog-details.html'
     context_object_name = 'post'
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
