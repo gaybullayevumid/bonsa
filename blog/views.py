@@ -1,3 +1,7 @@
+from django.shortcuts import redirect
+from pyexpat.errors import messages
+
+from .forms import CommentForm
 from .models import *
 from django.views.generic import ListView, DetailView
 
@@ -38,5 +42,23 @@ class BlogDetailView(DetailView):
         context["next_post"] = Blog.objects.filter(
             created_at__gt=post.created_at
         ).order_by('created_at').first()
+
+        context['form'] = CommentForm()
+        context['comments'] = post.comments.order_by('-created_at')
         return context
 
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        if not request.user.is_authenticated:
+            messages.error(request, "Kamentariya yozish uchun oldin login qiling!")
+            return redirect('login')
+
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = self.object
+            comment.user = request.user
+            comment.save()
+            return redirect('blog_details', slug=self.object.slug)
+        return self.render_to_response(self.get_context_data(form=form))

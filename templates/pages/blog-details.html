@@ -84,104 +84,52 @@
           </div>
 
           <div class="comment-area">
-            <h3 class="comment-title">2 Comments:</h3>
-            <div class="comment-card">
+            <h3 class="comment-title">{{ comment.count }} Comments:</h3>
+
+              {% for comment in comments %}
+            <div class="comment-card {% if forloop.counter|divisibleby:2 %} ml-50 {% endif %}">
               <div class="comment-author-img">
                 <img src="{% static "img/testimonial/t1.png" %}" alt="Images" />
               </div>
               <div class="comment-author-title">
-                <h3>John Doe</h3>
-                <span>16 June 2020 10:00 PM</span>
+                <h3>{{ comment.user.username }}</h3>
+                <span>{{ comment.created_at|date:"d M Y H:i"}}</span>
               </div>
               <div class="comment-body">
                 <p>
-                  “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do ei usmod tempor incididunt ut labore et dolore magna
-                  aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                  commodo.”
+                  {{ comment.content }}
                 </p>
                 <a href="#" class="reply-btn">Reply</a>
               </div>
             </div>
-
-            <div class="comment-card ml-50">
-              <div class="comment-author-img">
-                <img src="{% static "img/testimonial/t2.png" %}" alt="Images" />
-              </div>
-              <div class="comment-author-title">
-                <h3>Knot Doe</h3>
-                <span>16 June 2020 10:30 PM</span>
-              </div>
-              <div class="comment-body">
-                <p>
-                  “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do ei usmod tempor incididunt ut labore et dolore magna
-                  aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                  commodo.”
-                </p>
-                <a href="#" class="reply-btn">Reply</a>
-              </div>
-            </div>
-
-            <div class="comment-card">
-              <div class="comment-author-img">
-                <img src="{% static "img/testimonial/t3.png" %}" alt="Images" />
-              </div>
-              <div class="comment-author-title">
-                <h3>John Smith</h3>
-                <span>16 June 2020 10:50 PM</span>
-              </div>
-              <div class="comment-body">
-                <p>
-                  “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do ei usmod tempor incididunt ut labore et dolore magna
-                  aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                  commodo.”
-                </p>
-                <a href="#" class="reply-btn">Reply</a>
-              </div>
-            </div>
+              {% empty %}
+              <p>No comments yet</p>
+              {% endfor %}
 
             <div class="comment-respond">
               <h3 class="comment-respond-title">Leave a Reply</h3>
-              <form class="comment-form">
-                <p>
-                  Your email address will not be published. Required fields are
-                  marked *
-                </p>
+                {% if user.is_authenticated %}
+              <form method="post" class="comment-form">
+              {% csrf_token %}
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <label>Name *</label>
-                      <input type="text" class="form-control" />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Email *</label>
-                      <input type="text" class="form-control" />
-                    </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="form-group">
-                      <label>Comment *</label>
-                      <textarea
-                        name="Comment"
-                        class="form-control textarea-hight"
-                        id="Comment"
-                        cols="30"
-                        rows="5"
-                      ></textarea>
+                      {{ form.content.label_tag }}
+                      {{ form.content }}
                     </div>
                   </div>
 
-                  <div class="col-lg-12 col-md-12">
-                    <button type="submit" class="post-com-btn">
-                      Post A Comment
-                    </button>
+                  <div class="col-lg-12">
+                    <button type="submit" class="post-com-btn">Post a comment</button>
                   </div>
+
                 </div>
               </form>
+                {% else %}
+                <p class="text-danger">
+                    Comment qoldirish uchun iltimos <a href="{% url 'login' %}">Tizimga kiring</a>
+                </p>
+                {%  endif %}
             </div>
           </div>
         </div>
@@ -263,7 +211,7 @@
               <ul>
                   {% for category in categories %}
                 <li>
-                  <a href="#">{{ post.category.name }} <span>{{ category.post_count }}</span></a>
+                  <a href="#">{{ category.name }} <span>{{ category.post_count }}</span></a>
                 </li>
                   {% endfor %}
               </ul>
