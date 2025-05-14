@@ -10,7 +10,7 @@ from django.contrib.auth.views import PasswordResetView as DjangoPasswordResetVi
 User = get_user_model()
 
 class UserRegisterView(FormView):
-    template_name = 'account/sign-up.html'
+    template_name = 'pages/account/sign-up.html'
     form_class = SignUpForm
     success_url = reverse_lazy('login')
 
@@ -21,7 +21,7 @@ class UserRegisterView(FormView):
         return super().form_valid(form)
 
 class UserLoginView(FormView):
-    template_name = 'account/sign-in.html'
+    template_name = 'pages/account/sign-in.html'
     form_class = LoginForm
 
     def form_valid(self, form):
@@ -42,10 +42,10 @@ class UserLogoutView(View):
         return redirect('login')
 
 class PasswordResetView(DjangoPasswordResetView):
-    template_name = 'account/recover-password.html'
+    template_name = 'pages/account/recover-password.html'
     form_class = CustomPasswordResetForm
     email_template_name = 'account/password_reset_email.html'
     success_url = reverse_lazy('password_reset_done')
 
 class PasswordResetDoneView(DjangoPasswordResetDoneView):
-    template_name = 'account/password_reset_done.html'
+    template_name = 'pages/account/password_reset_done.html'
