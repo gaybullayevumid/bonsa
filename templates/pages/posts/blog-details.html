@@ -222,27 +222,11 @@
             <h3 class="widget-title">Tags</h3>
             <div class="post-wrap">
               <ul>
+                  {% for tag in categories %}
                 <li>
-                  <a href="#">Seo</a>
+                  <a href="#">{{ tag.name }}</a>
                 </li>
-                <li>
-                  <a href="#">Marketing</a>
-                </li>
-                <li>
-                  <a href="#">Dvelelopment</a>
-                </li>
-                <li>
-                  <a href="#">Web</a>
-                </li>
-                <li>
-                  <a href="#">App</a>
-                </li>
-                <li>
-                  <a href="#">Analysis</a>
-                </li>
-                <li>
-                  <a href="#">Research</a>
-                </li>
+                  {% endfor %}
               </ul>
             </div>
           </section>
