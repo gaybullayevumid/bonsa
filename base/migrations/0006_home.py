@@ -6,17 +6,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('base', '0005_alter_blog_slug'),
+        ("base", "0005_alter_blog_slug"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Home',
+            name="Home",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title_1', models.CharField(max_length=255)),
-                ('title_2', models.CharField(max_length=255)),
-                ('about', models.TextField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title_1", models.CharField(max_length=255)),
+                ("title_2", models.CharField(max_length=255)),
+                ("about", models.TextField()),
             ],
         ),
     ]

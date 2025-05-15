@@ -4,8 +4,10 @@ from .models import CustomUser
 
 # Register your models here.
 
+
 class CustomUserAdmin(UserAdmin):
     models = CustomUser
-    list_display = ['username', 'email', 'is_staff']
+    list_display = ["username", "email", "is_staff"]
+
 
 admin.site.register(CustomUser, CustomUserAdmin)

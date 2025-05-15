@@ -1,239 +1,218 @@
-{% extends "base.html" %} {% load static %} {% block content %}
-
-<!-- Inner Banner -->
-<div class="inner-banner inner-bg5">
-  <div class="container">
-    <div class="inner-title text-center">
-      <h3>Blog Details</h3>
-      <ul>
-        <li>
-          <a href="index.html">Home</a>
-        </li>
-        <li>
-          <i class="bx bxs-chevrons-right"></i>
-        </li>
-        <li>Blog Details</li>
-      </ul>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <!-- Inner Banner -->
+  <div class="inner-banner inner-bg5">
+    <div class="container">
+      <div class="inner-title text-center">
+        <h3>Blog Details</h3>
+        <ul>
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+          <li>
+            <i class="bx bxs-chevrons-right"></i>
+          </li>
+          <li>Blog Details</li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
-<!-- Inner Banner End -->
-
-<div class="blog-dtls ptb-100">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8">
-        <div class="blog-dtls-content">
-          <div class="blog-dtls-img">
-            {% if post.image %}
-            <img src="{{post.image.url}}" alt="Blog Images" />
-            {% endif %}
-          </div>
-          <div class="blog-text">
-            <h2>{{post.title}}</h2>
-            <p>
-              {{post.body}}
-            </p>
-          </div>
-          <div class="article-footer">
-            <div class="article-tags">
-              <span><i class="bx bx-share-alt"></i></span>
-              <a href="#">Share</a>
+  <!-- Inner Banner End -->
+  <div class="blog-dtls ptb-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="blog-dtls-content">
+            <div class="blog-dtls-img">
+              {% if post.image %}<img src="{{ post.image.url }}" alt="Blog Images" />{% endif %}
             </div>
-
-            <div class="article-share">
-              <ul class="social">
-                <li>
-                  <a href="#" target="_blank">
-                    <i class="bx bxl-facebook"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" target="_blank">
-                    <i class="bx bxl-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" target="_blank">
-                    <i class="bx bxl-linkedin"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" target="_blank">
-                    <i class="bx bxl-pinterest-alt"></i>
-                  </a>
-                </li>
-              </ul>
+            <div class="blog-text">
+              <h2>{{ post.title }}</h2>
+              <p>{{ post.body }}</p>
             </div>
-          </div>
-
-          <div class="post-navigation">
-            <div class="navigation-links">
+            <div class="article-footer">
+              <div class="article-tags">
+                <span><i class="bx bx-share-alt"></i></span>
+                <a href="#">Share</a>
+              </div>
+              <div class="article-share">
+                <ul class="social">
+                  <li>
+                    <a href="#" target="_blank">
+                      <i class="bx bxl-facebook"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank">
+                      <i class="bx bxl-twitter"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank">
+                      <i class="bx bxl-linkedin"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank">
+                      <i class="bx bxl-pinterest-alt"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="post-navigation">
+              <div class="navigation-links">
                 {% if prev_post %}
                   <div class="nav-previous">
                     <a href="{% url 'blog_details' prev_post.slug %}">Prev Post</a>
                   </div>
                 {% endif %}
-
-            {% if next_post %}
-              <div class="nav-next">
-                <a href="{% url 'blog_details' next_post.slug %}">Next Post</a>
+                {% if next_post %}
+                  <div class="nav-next">
+                    <a href="{% url 'blog_details' next_post.slug %}">Next Post</a>
+                  </div>
+                {% endif %}
               </div>
-            {% endif %}
             </div>
-          </div>
-
-          <div class="comment-area">
-            <h3 class="comment-title">{{ comments.count }} Comments:</h3>
-
+            <div class="comment-area">
+              <h3 class="comment-title">{{ comments.count }} Comments:</h3>
               {% for comment in comments %}
-            <div class="comment-card {% if forloop.counter|divisibleby:2 %}{% endif %}">
-              <div class="comment-author-img">
-                <img src="{% static "img/testimonial/t1.png" %}" alt="Images" />
-              </div>
-              <div class="comment-author-title">
-                <h3>{{ comment.user.username }}</h3>
-                <span>{{ comment.created_at|date:"d M Y H:i"}}</span>
-              </div>
-              <div class="comment-body">
-                <p>
-                  {{ comment.content }}
-                </p>
-                <a href="#" class="reply-btn">Reply</a>
-              </div>
-            </div>
-              {% empty %}
-              <p>No comments yet</p>
-              {% endfor %}
-
-            <div class="comment-respond">
-              <h3 class="comment-respond-title">Leave a Reply</h3>
-                {% if user.is_authenticated %}
-              <form method="post" class="comment-form">
-              {% csrf_token %}
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      {{ form.content.label_tag }}
-                      {{ form.content }}
-                    </div>
+                <div class="comment-card {% if forloop.counter|divisibleby:2 %}{% endif %}">
+                  <div class="comment-author-img">
+                    <img src="{% static "img/testimonial/t1.png" %}" alt="Images" />
                   </div>
-
-                  <div class="col-lg-12">
-                    <button type="submit" class="post-com-btn">Post a comment</button>
+                  <div class="comment-author-title">
+                    <h3>{{ comment.user.username }}</h3>
+                    <span>{{ comment.created_at|date:"d M Y H:i" }}</span>
                   </div>
-
+                  <div class="comment-body">
+                    <p>{{ comment.content }}</p>
+                    <a href="#" class="reply-btn">Reply</a>
+                  </div>
                 </div>
-              </form>
+              {% empty %}
+                <p>No comments yet</p>
+              {% endfor %}
+              <div class="comment-respond">
+                <h3 class="comment-respond-title">Leave a Reply</h3>
+                {% if user.is_authenticated %}
+                  <form method="post" class="comment-form">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          {{ form.content.label_tag }}
+                          {{ form.content }}
+                        </div>
+                      </div>
+                      <div class="col-lg-12">
+                        <button type="submit" class="post-com-btn">Post a comment</button>
+                      </div>
+                    </div>
+                  </form>
                 {% else %}
-                <p class="text-danger">
+                  <p class="text-danger">
                     Comment qoldirish uchun iltimos <a href="{% url 'login' %}">Tizimga kiring</a>
-                </p>
-                {%  endif %}
+                  </p>
+                {% endif %}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="col-lg-4">
-        <div class="widget-area">
-          <div class="widget widget_search">
-            <h3 class="widget-title">Search Now</h3>
-            <div class="post-wrap">
-              <form class="search-form">
-                <label>
-                  <span class="screen-reader-text">Search for:</span>
-                  <input
-                    type="search"
-                    class="search-field"
-                    placeholder="Search..."
-                  />
-                </label>
-                <button type="submit"><i class="bx bx-search"></i></button>
-              </form>
+        <div class="col-lg-4">
+          <div class="widget-area">
+            <div class="widget widget_search">
+              <h3 class="widget-title">Search Now</h3>
+              <div class="post-wrap">
+                <form class="search-form">
+                  <label>
+                    <span class="screen-reader-text">Search for:</span>
+                    <input type="search" class="search-field" placeholder="Search..." />
+                  </label>
+                  <button type="submit">
+                    <i class="bx bx-search"></i>
+                  </button>
+                </form>
+              </div>
             </div>
-          </div>
-
-          <section class="widget widget-popular-post">
-            <h3 class="widget-title">Popular Posts</h3>
-            <div class="post-wrap">
+            <section class="widget widget-popular-post">
+              <h3 class="widget-title">Popular Posts</h3>
+              <div class="post-wrap">
                 {% for last_post in last_posts %}
-              <article class="item">
-                <a href="{% url "blog_details" post.slug %}" class="thumb">
-                    {% if last_post.image %}
-                        <img src="{{ last_post.image.url }}" alt="{{ post.title }}" class="fullimage cover bg1" role="img">
-                    {% else %}
-                  <span class="fullimage cover bg1" role="img"></span>
-                    {% endif %}
-                </a>
-                <div class="info">
-                  <time datetime="2020-06-30">{{ post.created_at | date:'M d Y'}}</time>
-                  <h4 class="title usmall">
-                    <a href="{% url "blog_details" post.pk %}">
-                        {{ last_post.title }}
+                  <article class="item">
+                    <a href="{% url "blog_details" post.slug %}" class="thumb">
+                      {% if last_post.image %}
+                        <img src="{{ last_post.image.url }}"
+                             alt="{{ post.title }}"
+                             class="fullimage cover bg1"
+                             role="img">
+                      {% else %}
+                        <span class="fullimage cover bg1" role="img"></span>
+                      {% endif %}
                     </a>
-                  </h4>
-                </div>
-              </article>
+                    <div class="info">
+                      <time datetime="2020-06-30">{{ post.created_at | date:'M d Y' }}</time>
+                      <h4 class="title usmall">
+                        <a href="{% url "blog_details" post.pk %}">{{ last_post.title }}</a>
+                      </h4>
+                    </div>
+                  </article>
                 {% endfor %}
-            </div>
-          </section>
-
-          <section class="widget widget_categories">
-            <h3 class="widget-title">Archives</h3>
-            <div class="post-wrap">
-              <ul>
-                <li>
-                  <a href="#">January <span>2020</span></a>
-                </li>
-                <li>
-                  <a href="#">February <span>2020</span></a>
-                </li>
-                <li>
-                  <a href="#">March <span>2020</span></a>
-                </li>
-                <li>
-                  <a href="#">April <span>2020</span></a>
-                </li>
-                <li>
-                  <a href="#">May <span>2020</span></a>
-                </li>
-                <li>
-                  <a href="#">June <span>2020</span></a>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <section class="widget widget_categories">
-            <h3 class="widget-title">Categories</h3>
-            <div class="post-wrap">
-              <ul>
+              </div>
+            </section>
+            <section class="widget widget_categories">
+              <h3 class="widget-title">Archives</h3>
+              <div class="post-wrap">
+                <ul>
+                  <li>
+                    <a href="#">January <span>2020</span></a>
+                  </li>
+                  <li>
+                    <a href="#">February <span>2020</span></a>
+                  </li>
+                  <li>
+                    <a href="#">March <span>2020</span></a>
+                  </li>
+                  <li>
+                    <a href="#">April <span>2020</span></a>
+                  </li>
+                  <li>
+                    <a href="#">May <span>2020</span></a>
+                  </li>
+                  <li>
+                    <a href="#">June <span>2020</span></a>
+                  </li>
+                </ul>
+              </div>
+            </section>
+            <section class="widget widget_categories">
+              <h3 class="widget-title">Categories</h3>
+              <div class="post-wrap">
+                <ul>
                   {% for category in categories %}
-                <li>
-                  <a href="#">{{ category.name }} <span>{{ category.post_count }}</span></a>
-                </li>
+                    <li>
+                      <a href="#">{{ category.name }} <span>{{ category.post_count }}</span></a>
+                    </li>
                   {% endfor %}
-              </ul>
-            </div>
-          </section>
-
-          <section class="widget widget_tag">
-            <h3 class="widget-title">Tags</h3>
-            <div class="post-wrap">
-              <ul>
+                </ul>
+              </div>
+            </section>
+            <section class="widget widget_tag">
+              <h3 class="widget-title">Tags</h3>
+              <div class="post-wrap">
+                <ul>
                   {% for tag in categories %}
-                <li>
-                  <a href="#">{{ tag.name }}</a>
-                </li>
+                    <li>
+                      <a href="#">{{ tag.name }}</a>
+                    </li>
                   {% endfor %}
-              </ul>
-            </div>
-          </section>
+                </ul>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
 {% endblock content %}
