@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
   <!-- Inner Banner -->
@@ -25,7 +25,9 @@
         <div class="col-lg-8">
           <div class="blog-dtls-content">
             <div class="blog-dtls-img">
-              {% if post.image %}<img src="{{ post.image.url }}" alt="Blog Images" />{% endif %}
+              {% if post.image %}
+                <img src="{{ post.image.url }}" alt="Blog Images" />
+              {% endif %}
             </div>
             <div class="blog-text">
               <h2>{{ post.title }}</h2>
@@ -39,24 +41,16 @@
               <div class="article-share">
                 <ul class="social">
                   <li>
-                    <a href="#" target="_blank">
-                      <i class="bx bxl-facebook"></i>
-                    </a>
+                    <a href="#" target="_blank"><i class="bx bxl-facebook"></i></a>
                   </li>
                   <li>
-                    <a href="#" target="_blank">
-                      <i class="bx bxl-twitter"></i>
-                    </a>
+                    <a href="#" target="_blank"><i class="bx bxl-twitter"></i></a>
                   </li>
                   <li>
-                    <a href="#" target="_blank">
-                      <i class="bx bxl-linkedin"></i>
-                    </a>
+                    <a href="#" target="_blank"><i class="bx bxl-linkedin"></i></a>
                   </li>
                   <li>
-                    <a href="#" target="_blank">
-                      <i class="bx bxl-pinterest-alt"></i>
-                    </a>
+                    <a href="#" target="_blank"><i class="bx bxl-pinterest-alt"></i></a>
                   </li>
                 </ul>
               </div>
@@ -80,11 +74,11 @@
               {% for comment in comments %}
                 <div class="comment-card {% if forloop.counter|divisibleby:2 %}{% endif %}">
                   <div class="comment-author-img">
-                    <img src="{% static "img/testimonial/t1.png" %}" alt="Images" />
+                    <img src="{% static 'img/testimonial/t1.png' %}" alt="Images" />
                   </div>
                   <div class="comment-author-title">
                     <h3>{{ comment.user.username }}</h3>
-                    <span>{{ comment.created_at|date:"d M Y H:i" }}</span>
+                    <span>{{ comment.created_at|date:'d M Y H:i' }}</span>
                   </div>
                   <div class="comment-body">
                     <p>{{ comment.content }}</p>
@@ -101,10 +95,8 @@
                     {% csrf_token %}
                     <div class="row">
                       <div class="col-lg-6">
-                        <div class="form-group">
-                          {{ form.content.label_tag }}
-                          {{ form.content }}
-                        </div>
+                        <div class="form-group">{{ form.content.label_tag }}
+                          {{ form.content }}</div>
                       </div>
                       <div class="col-lg-12">
                         <button type="submit" class="post-com-btn">Post a comment</button>
@@ -130,9 +122,7 @@
                     <span class="screen-reader-text">Search for:</span>
                     <input type="search" class="search-field" placeholder="Search..." />
                   </label>
-                  <button type="submit">
-                    <i class="bx bx-search"></i>
-                  </button>
+                  <button type="submit"><i class="bx bx-search"></i></button>
                 </form>
               </div>
             </div>
@@ -141,21 +131,16 @@
               <div class="post-wrap">
                 {% for last_post in last_posts %}
                   <article class="item">
-                    <a href="{% url "blog_details" post.slug %}" class="thumb">
+                    <a href="{% url 'blog_details' post.slug %}" class="thumb">
                       {% if last_post.image %}
-                        <img src="{{ last_post.image.url }}"
-                             alt="{{ post.title }}"
-                             class="fullimage cover bg1"
-                             role="img">
+                        <img src="{{ last_post.image.url }}" alt="{{ post.title }}" class="fullimage cover bg1" role="img" />
                       {% else %}
                         <span class="fullimage cover bg1" role="img"></span>
                       {% endif %}
                     </a>
                     <div class="info">
-                      <time datetime="2020-06-30">{{ post.created_at | date:'M d Y' }}</time>
-                      <h4 class="title usmall">
-                        <a href="{% url "blog_details" post.pk %}">{{ last_post.title }}</a>
-                      </h4>
+                      <time datetime="2020-06-30">{{ post.created_at|date:'M d Y' }}</time>
+                      <h4 class="title usmall"><a href="{% url 'blog_details' post.pk %}">{{ last_post.title }}</a></h4>
                     </div>
                   </article>
                 {% endfor %}
@@ -215,4 +200,4 @@
       </div>
     </div>
   </div>
-{% endblock content %}
+{% endblock %}

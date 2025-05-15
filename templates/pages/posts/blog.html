@@ -1,111 +1,99 @@
-{% extends "base.html" %} {% load static %} {% block content %}
-
-<!-- Inner Banner -->
-<div class="inner-banner inner-bg4">
-  <div class="container">
-    <div class="inner-title text-center">
-      <h3>Our Latest Blogs</h3>
-      <ul>
-        <li>
-          <a href="{% url 'home' %}">Home</a>
-        </li>
-        <li>
-          <i class="bx bxs-chevrons-right"></i>
-        </li>
-        <li>Blog</li>
-      </ul>
-    </div>
-  </div>
-</div>
-<!-- Inner Banner End -->
-
-<!-- Blog Area -->
-<div class="blog-area pt-100 pb-70">
-  <div class="container">
-    <div class="section-title text-center">
-      <span>Blogs</span>
-      <h2>Our Latest Post</h2>
-      <p>
-        It is a long established fact that a reader will be distracted by the
-        readable content of a page when looking at its layout.
-      </p>
-    </div>
-    <div class="row pt-45">
-      {% for post in posts %}
-      <div class="col-lg-4 col-md-6">
-        <div class="blog-card">
-          <div class="blog-img">
-            <a href="{% url "blog_details" post.slug %}">
-              {% if post.image %}
-              <img src="{{post.image.url}}" alt="Blog Images" />
-              {% endif %}
-            </a>
-          </div>
-          <div class="blog-content">
-            <div class="blog-tag">
-              <a href="{% url "blog_details" post.slug %}"><span>{{post.category}}</span></a>
-            </div>
-            <a href="{% url "blog_details" post.slug %}">
-              <h3>{{post.title | truncatechars:55}}</h3>
-            </a>
-            <a href="{% url "blog_details" post.slug %}" class="read-btn">Read More</a>
-          </div>
-        </div>
+{% extends 'base.html' %} {% load static %} {% block content %}
+  <!-- Inner Banner -->
+  <div class="inner-banner inner-bg4">
+    <div class="container">
+      <div class="inner-title text-center">
+        <h3>Our Latest Blogs</h3>
+        <ul>
+          <li>
+            <a href="{% url 'home' %}">Home</a>
+          </li>
+          <li>
+            <i class="bx bxs-chevrons-right"></i>
+          </li>
+          <li>Blog</li>
+        </ul>
       </div>
-      {% endfor %}
-
-      {% if page_obj.has_other_pages %}
-<div class="col-lg-12">
-    <div class="pagination-area text-center">
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <!-- First Page Link -->
-                {% if page_obj.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page=1">
-                        <i class="bx bx-chevrons-left"></i>
-                    </a>
-                </li>
-                {% endif %}
-
-                <!-- Previous Page Link -->
-                {% if page_obj.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
-                </li>
-                {% endif %}
-
-                <!-- Page Numbers -->
-                {% for num in page_obj.paginator.page_range %}
-                <li class="page-item {% if num == page_obj.number %} active {% endif %}">
-                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-                </li>
-                {% endfor %}
-
-                <!-- Next Page Link -->
-                {% if page_obj.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
-                </li>
-                {% endif %}
-
-                <!-- Last Page Link -->
-                {% if page_obj.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
-                        <i class="bx bx-chevrons-right"></i>
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
-        </nav>
-    </div>
-</div>
-{% endif %}
-
     </div>
   </div>
-</div>
-<!-- Blog Area End -->
+  <!-- Inner Banner End -->
 
-{% endblock content %}
+  <!-- Blog Area -->
+  <div class="blog-area pt-100 pb-70">
+    <div class="container">
+      <div class="section-title text-center">
+        <span>Blogs</span>
+        <h2>Our Latest Post</h2>
+        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+      </div>
+      <div class="row pt-45">
+        {% for post in posts %}
+          <div class="col-lg-4 col-md-6">
+            <div class="blog-card">
+              <div class="blog-img">
+                <a href="{% url 'blog_details' post.slug %}">
+                  {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="Blog Images" />
+                  {% endif %}
+                </a>
+              </div>
+              <div class="blog-content">
+                <div class="blog-tag">
+                  <a href="{% url 'blog_details' post.slug %}"><span>{{ post.category }}</span></a>
+                </div>
+                <a href="{% url 'blog_details' post.slug %}"><h3>{{ post.title|truncatechars:55 }}</h3></a>
+                <a href="{% url 'blog_details' post.slug %}" class="read-btn">Read More</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        {% if page_obj.has_other_pages %}
+          <div class="col-lg-12">
+            <div class="pagination-area text-center">
+              <nav aria-label="Page navigation">
+                <ul class="pagination">
+                  <!-- First Page Link -->
+                  {% if page_obj.has_previous %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page=1"><i class="bx bx-chevrons-left"></i></a>
+                    </li>
+                  {% endif %}
+
+                  <!-- Previous Page Link -->
+                  {% if page_obj.has_previous %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+                    </li>
+                  {% endif %}
+
+                  <!-- Page Numbers -->
+                  {% for num in page_obj.paginator.page_range %}
+                    <li class="page-item {% if num == page_obj.number %} active {% endif %}">
+                      <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                  {% endfor %}
+
+                  <!-- Next Page Link -->
+                  {% if page_obj.has_next %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+                    </li>
+                  {% endif %}
+
+                  <!-- Last Page Link -->
+                  {% if page_obj.has_next %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}"><i class="bx bx-chevrons-right"></i></a>
+                    </li>
+                  {% endif %}
+                </ul>
+              </nav>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <!-- Blog Area End -->
+{% endblock %}
