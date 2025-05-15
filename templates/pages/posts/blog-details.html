@@ -73,7 +73,7 @@
               <h3 class="comment-title">{{ comments.count }} Comments:</h3>
 
               {% for comment in comments %}
-                <div class="comment-card {% if forloop.counter|divisibleby:2 %}{% endif %}">
+                <div class="comment-card {% if comment.parent %}ml-50{% endif %}">
                   <div class="comment-author-img">
                     <img src="{% static 'img/testimonial/t1.png' %}" alt="Images" />
                   </div>
@@ -91,12 +91,9 @@
                       <form method="post" class="comment-form">
                         {% csrf_token %}
                         {{ form.non_field_errors }}
-
                         {{ form.content.label_tag }}
                         {{ form.content }}
-
                         <input type="hidden" name="parent" value="{{ comment.id }}" />
-
                         <button type="submit" class="post-com-btn">Post Reply</button>
                       </form>
                     </div>
@@ -112,12 +109,9 @@
                   <form method="post" class="comment-form">
                     {% csrf_token %}
                     {{ form.non_field_errors }}
-
                     {{ form.content.label_tag }}
                     {{ form.content }}
-
                     <input type="hidden" name="parent" value="" />
-
                     <button type="submit" class="post-com-btn">Post a comment</button>
                   </form>
                 {% else %}
