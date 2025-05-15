@@ -47,6 +47,15 @@ class BlogDetailView(DetailView):
 
         context["form"] = CommentForm()
         context["comments"] = post.comments.order_by("-created_at")
+
+        reply_to = self.request.GET.get('reply')
+        if reply_to:
+            try:
+                context['reply_to'] = int(reply_to)
+            except ValueError:
+                context['reply_to'] = None
+        else:
+            context['reply_to'] = None
         return context
 
     def post(self, request, *args, **kwargs):

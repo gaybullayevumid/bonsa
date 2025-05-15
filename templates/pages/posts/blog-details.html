@@ -71,6 +71,7 @@
             </div>
             <div class="comment-area">
               <h3 class="comment-title">{{ comments.count }} Comments:</h3>
+
               {% for comment in comments %}
                 <div class="comment-card {% if forloop.counter|divisibleby:2 %}{% endif %}">
                   <div class="comment-author-img">
@@ -82,26 +83,42 @@
                   </div>
                   <div class="comment-body">
                     <p>{{ comment.content }}</p>
-                    <a href="#" class="reply-btn">Reply</a>
+                    <a href="?reply={{ comment.id }}#reply-form" class="reply-btn">Reply</a>
                   </div>
+
+                  {% if reply_to == comment.id %}
+                    <div class="reply-form-container" id="reply-form">
+                      <form method="post" class="comment-form">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+
+                        {{ form.content.label_tag }}
+                        {{ form.content }}
+
+                        <input type="hidden" name="parent" value="{{ comment.id }}" />
+
+                        <button type="submit" class="post-com-btn">Post Reply</button>
+                      </form>
+                    </div>
+                  {% endif %}
                 </div>
               {% empty %}
                 <p>No comments yet</p>
               {% endfor %}
+
               <div class="comment-respond">
                 <h3 class="comment-respond-title">Leave a Reply</h3>
                 {% if user.is_authenticated %}
                   <form method="post" class="comment-form">
                     {% csrf_token %}
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <div class="form-group">{{ form.content.label_tag }}
-                          {{ form.content }}</div>
-                      </div>
-                      <div class="col-lg-12">
-                        <button type="submit" class="post-com-btn">Post a comment</button>
-                      </div>
-                    </div>
+                    {{ form.non_field_errors }}
+
+                    {{ form.content.label_tag }}
+                    {{ form.content }}
+
+                    <input type="hidden" name="parent" value="" />
+
+                    <button type="submit" class="post-com-btn">Post a comment</button>
                   </form>
                 {% else %}
                   <p class="text-danger">
