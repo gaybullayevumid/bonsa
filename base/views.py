@@ -55,5 +55,7 @@ class TestimonialPageView(TemplateView):
     template_name = "pages/testimonial.html"
 
 
-class ContactPageView(TemplateView):
+class ContactPageView(ListView):
+    model = ContactInfo
     template_name = "pages/contact.html"
+    context_object_name = "contacts"

@@ -10,3 +10,15 @@ class Home(models.Model):
 
     class Meta:
         verbose_name_plural = "Home"
+
+
+class ContactInfo(models.Model):
+    phone1 = models.CharField(max_length=20)
+    phone2 = models.CharField(max_length=20)
+    email1 = models.EmailField()
+    email2 = models.EmailField()
+    address1 = models.CharField(max_length=255)
+    address2 = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.email1
