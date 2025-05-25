@@ -12,6 +12,15 @@ class Home(models.Model):
         verbose_name_plural = "Home"
 
 
+class About(models.Model):
+    title = models.CharField(max_length=200)
+    body = models.TextField()
+    image = models.ImageField(upload_to='about_images/', blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "About"
+
+
 class ContactInfo(models.Model):
     phone1 = models.CharField(max_length=20)
     phone2 = models.CharField(max_length=20)
