@@ -139,7 +139,8 @@
                               Contact
                           </a>
                       </li>
-                      <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                      <li class="nav-item">
+                          <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
                           <input name="next" type="hidden" value="{{ redirect_to }}">
                           <select name="language">
                               {% get_current_language as LANGUAGE_CODE %}
@@ -152,7 +153,8 @@
                               {% endfor %}
                           </select>
                           <input type="submit" value="Go">
-                      </form>
+                          </form>
+                      </li>
                   </ul>
 
                   <div class="menu-btn">
