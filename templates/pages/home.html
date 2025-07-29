@@ -1,4 +1,5 @@
-{% extends "base.html" %} {% load static %}{% block content %}
+{% extends "base.html" %}
+{% load i18n %} {% load static %}{% block content %}
 
 <!-- Main Banner -->
 <div class="main-banner">
@@ -15,8 +16,12 @@
             {% endfor %}
 
           <div class="banner-btn">
-            <a href="{% url 'contact' %}" class="default-btn">Contact Us</a>
-            <a href="#" class="default-btn active">Know More</a>
+            <a href="{% url 'contact' %}" class="default-btn">
+                {% blocktranslate %}
+                	Contact Us
+                {% endblocktranslate %}
+            </a>
+            <a href="#" class="default-btn active">{% blocktranslate %}Know More{% endblocktranslate %}</a>
           </div>
         </div>
       </div>

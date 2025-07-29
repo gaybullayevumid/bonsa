@@ -1,0 +1,5 @@
+-- Tarjima qilingan matnlarni bitta faylga joylash
+py manage.py makemessage -l ru
+
+-- Tarjima qilib bolgandan kn compile qilish
+py manage.py compilemessages -l en

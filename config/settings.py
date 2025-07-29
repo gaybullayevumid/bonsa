@@ -105,6 +105,10 @@ LANGUAGES = [
 
 MODELTRANSLATION_DEFAULT = 'uz'
 
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 MEDIA_URL = "/media/"
