@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-29 05:20+0500\n"
+"POT-Creation-Date: 2025-07-29 07:37+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,6 +30,18 @@ msgstr ""
 msgid "Russian"
 msgstr ""
 
+#: .\templates\layouts\header.html:29
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                \tContact Us\n"
+#| "                "
+msgid ""
+"\n"
+"                                  Home\n"
+"                              "
+msgstr "Home"
+
 #: .\templates\pages\home.html:20
 msgid ""
 "\n"
@@ -40,3 +52,22 @@ msgstr "Contact Us"
 #: .\templates\pages\home.html:24
 msgid "Know More"
 msgstr "Know More"
+
+#: .\templates\pages\home.html:112
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                \tContact Us\n"
+#| "                "
+msgid ""
+"\n"
+"                  About Us\n"
+"              "
+msgstr "About Us"
+
+#: .\templates\pages\home.html:117
+msgid ""
+"\n"
+"                  We Are Helping People to Reach Their Customer Since 2005\n"
+"              "
+msgstr "We Are Helping People to Reach Their Customer Since 2005"
