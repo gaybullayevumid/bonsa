@@ -8,9 +8,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 ] + i18n_patterns(
     path("i18n/", include('django.conf.urls.i18n')),
-    path("accounts/", include("accounts.urls")),
-    path("blog/", include("blog.urls")),
-    path("", include("base.urls")),
+    path("accounts/", include("apps.accounts.urls")),
+    path("blog/", include("apps.blog.urls")),
+    path("", include("apps.base.urls")),
 )
 
 if settings.DEBUG:

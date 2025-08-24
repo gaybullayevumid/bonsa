@@ -10,7 +10,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "jazzmin",
-    "accounts",
+    "apps.accounts",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -22,8 +22,8 @@ INSTALLED_APPS = [
     "modeltranslation",
     
     # local apps
-    "base",
-    "blog",
+    "apps.base",
+    "apps.blog",
 ]
 
 MIDDLEWARE = [
