@@ -41,7 +41,7 @@
                 <div class="blog-tag">
                   <a href="{% url 'blog_details' post.slug %}"><span>{{ post.category }}</span></a>
                 </div>
-                <a href="{% url 'blog_details' post.slug %}"><h3>{{ post.title|truncatechars:55 }}</h3></a>
+                <a href="{% url 'blog_details' post.slug %}"><h3>{{ post.title|truncatechars:40 }}</h3></a>
                 <a href="{% url 'blog_details' post.slug %}" class="read-btn">Read More</a>
               </div>
             </div>
